@@ -1,4 +1,6 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, request
+from graphviz import Source
+from parse import parse
 
 app = Flask(__name__)
 
@@ -8,4 +10,19 @@ def index():
 
 @app.route('/render', methods=['POST'])
 def render():
-    return "Hehe"
+    dot = parse(request.form['source'])
+    dot.format = 'svg'
+    path = dot.render(cleanup=True)
+    try:
+        with open(path, 'r') as svgfile:
+            return svgfile.read()
+    except IOError as e:
+        return None
+
+@app.route('/print')
+def print_page():
+    return render_template('print.html', data=request.args['data'])
+
+@app.route('/dot', methods=['POST'])
+def dot():
+    dot = parse(request.form['source'])

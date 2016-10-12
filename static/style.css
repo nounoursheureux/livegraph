@@ -1,0 +1,9 @@
+@media print {
+    .hidden-print {
+        display: none !important;
+    }
+}
+
+svg {
+    transform-origin: top left;
+}
