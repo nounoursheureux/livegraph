@@ -20,12 +20,6 @@ def render():
     except IOError as e:
         return None
 
-@app.route('/print', methods=['POST'])
-def print_page():
-    source = request.form['source']
-    rankdir = request.form['rankdir']
-    return render_template('print.html', data=request.args['data'])
-
 @app.route('/dot', methods=['POST'])
 def dot():
     dot = parse(request.form['source'])

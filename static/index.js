@@ -1,7 +1,8 @@
 var content = document.getElementById('content');
 var rankdir = document.getElementById('rankdir');
 var output = document.getElementById('output');
-var print_page = document.getElementById('print');
+var hide = document.getElementById('hide');
+var everything = document.getElementById('everything');
 
 
 function reload() {
@@ -21,7 +22,10 @@ content.addEventListener('keyup', reload);
 content.addEventListener('change', reload);
 rankdir.addEventListener('change', reload);
 
-print_page.addEventListener('click', function(e) {
-    console.log("alalalal");
-    window.location = "/print?data=" + encodeURIComponent(output.innerHTML);
-})
+hide.addEventListener('click', function(e) {
+    if (everything.style.display == 'none') {
+        everything.style.display = 'block';
+    } else {
+        everything.style.display = 'none';
+    }
+});

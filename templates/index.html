@@ -3,17 +3,17 @@
     <head>
         <title>LiveGraph</title>
         <meta charset="utf8"/>
+        <link rel="stylesheet" href="/static/style.css"/>
     </head>
     <body>
-        <p>Hello, World!</p>
-        <form method="post" action="/print">
+        <div id="everything">
             <textarea name="source" id="content"></textarea>
             <select id="rankdir" name="rankdir">
                 <option value="LR">Left-Right</option>
                 <option value="TD">Top-Down</option>
             </select>
-            <input type="submit" value="Print Page"/>
-        </form>
+        </div>
+        <input type="button" value="Toggle visibility" id="hide" class="hidden-print"/>
         <pre id="output"></pre>
         <script src="/static/index.js"></script>
     </body>
