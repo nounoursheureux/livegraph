@@ -23,3 +23,5 @@ def render():
 @app.route('/dot', methods=['POST'])
 def dot():
     dot = parse(request.form['source'])
+    dot.attr('graph', rankdir=request.form['rankdir'])
+    return dot.source
