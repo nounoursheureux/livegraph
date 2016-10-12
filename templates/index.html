@@ -6,9 +6,15 @@
     </head>
     <body>
         <p>Hello, World!</p>
-        <textarea id="content"></textarea>
+        <form method="post" action="/print">
+            <textarea name="source" id="content"></textarea>
+            <select id="rankdir" name="rankdir">
+                <option value="LR">Left-Right</option>
+                <option value="TD">Top-Down</option>
+            </select>
+            <input type="submit" value="Print Page"/>
+        </form>
         <pre id="output"></pre>
-        <input type="button" id="print" value="Print Page"/>
         <script src="/static/index.js"></script>
     </body>
 </html>
