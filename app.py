@@ -13,6 +13,7 @@ def index():
 def render():
     dot = parse(request.form['source'])
     dot.attr('graph', rankdir=request.form['rankdir'])
+    dot.attr('graph', nodesep=request.form['nodesep'])
     dot.format = 'svg'
     path = dot.render(cleanup=True)
     try:

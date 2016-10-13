@@ -5,6 +5,7 @@ var hide = document.getElementById('hide');
 var everything = document.getElementById('everything');
 var rendertype = document.getElementById('rendertype');
 var download = document.getElementById('download');
+var nodesep = document.getElementById('nodesep');
 
 
 function reload() {
@@ -16,7 +17,7 @@ function reload() {
     }
     request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
     request.setRequestHeader("X-Requested-With", "XMLHttpRequest");
-    request.send("source=" + encodeURIComponent(content.value) + "&rankdir=" + encodeURIComponent(rankdir.value));
+    request.send("source=" + encodeURIComponent(content.value) + "&rankdir=" + encodeURIComponent(rankdir.value) + "&nodesep=" + encodeURIComponent(nodesep.value));
 
     request.onreadystatechange = function() {
         if (request.readyState == 4) {
@@ -29,6 +30,7 @@ content.addEventListener('keyup', reload);
 content.addEventListener('change', reload);
 rankdir.addEventListener('change', reload);
 rendertype.addEventListener('change', reload);
+nodesep.addEventListener('change', reload);
 
 hide.addEventListener('click', function(e) {
     if (everything.style.display == 'none') {
@@ -46,3 +48,5 @@ download.addEventListener('click', function(e) {
     }
     document.forms['everything'].submit();
 });
+
+reload();

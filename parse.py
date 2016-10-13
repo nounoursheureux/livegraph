@@ -17,8 +17,7 @@ def parse(source):
     i = 0
     dot = Digraph()
     dot.attr('node', shape='box')
-    dot.attr('graph', nodesep='0.07')
-    # dot.attr('graph', rankdir='LR')
+    dot.attr('graph', nodesep='0.2')
 
     currents = {}
     
@@ -27,6 +26,8 @@ def parse(source):
         if match:
             level = len(match.group(1))-1
             label = match.group(2).rstrip()
+            if level != 0 and not level-1 in currents:
+                continue
             current = Node(i, level, label)
             i += 1
             current.add_to_dot(dot)
