@@ -6,7 +6,7 @@
         <link rel="stylesheet" href="/static/style.css"/>
     </head>
     <body>
-        <div id="everything">
+        <form method="post" id="everything">
             <textarea name="source" id="content"></textarea>
             <select id="rankdir" name="rankdir">
                 <option value="LR">Left-Right</option>
@@ -16,7 +16,8 @@
                 <option value="render">Render</option>
                 <option value="dot">DOT source</option>
             </select>
-        </div>
+            <input type="button" value="Download" id="download"/>
+        </form>
         <input type="button" value="Toggle visibility" id="hide" class="hidden-print"/>
         <pre id="output"></pre>
         <script src="/static/index.js"></script>

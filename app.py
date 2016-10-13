@@ -1,6 +1,7 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, send_file
 from graphviz import Source
 from parse import parse
+from io import BytesIO
 
 app = Flask(__name__)
 
@@ -16,9 +17,15 @@ def render():
     path = dot.render(cleanup=True)
     try:
         with open(path, 'r') as svgfile:
-            return svgfile.read()
+            svg = svgfile.read()
+            if request.is_xhr:
+                return svg
+            else:
+                bio = BytesIO(bytes(svg, 'utf-8'))
+                return send_file(bio, attachment_filename="graph.svg", as_attachment=True)
     except IOError as e:
         return None
+        
 
 @app.route('/dot', methods=['POST'])
 def dot():

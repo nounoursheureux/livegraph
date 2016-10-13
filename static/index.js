@@ -4,6 +4,7 @@ var output = document.getElementById('output');
 var hide = document.getElementById('hide');
 var everything = document.getElementById('everything');
 var rendertype = document.getElementById('rendertype');
+var download = document.getElementById('download');
 
 
 function reload() {
@@ -14,6 +15,7 @@ function reload() {
         request.open('POST', '/dot', true);
     }
     request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+    request.setRequestHeader("X-Requested-With", "XMLHttpRequest");
     request.send("source=" + encodeURIComponent(content.value) + "&rankdir=" + encodeURIComponent(rankdir.value));
 
     request.onreadystatechange = function() {
@@ -34,4 +36,13 @@ hide.addEventListener('click', function(e) {
     } else {
         everything.style.display = 'none';
     }
+});
+
+download.addEventListener('click', function(e) {
+    if (rendertype.value == "render") {
+        document.forms['everything'].action = "/render"
+    } else if (rendertype.value == "dot") {
+        document.forms['everything'].action = "/dot"
+    }
+    document.forms['everything'].submit();
 });
